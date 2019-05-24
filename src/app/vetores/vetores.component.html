@@ -1,42 +1,54 @@
 <div class="container">
-  <form class="m-5">
-    <div class="row">
-      <div class="form-group">
-        <input class="form-control" type="text" [(ngModel)]="servico.estado.nome" name="nome" >
-      </div>
-      <div class="form-group">
-        <input class="form-control" type="text" [(ngModel)]="servico.estado.sigla" name="sigla" >
-      </div>
-      <div class="">
-        <button class="btn btn-info" type="button" name="button" (click)='adicionar()'>adicionar</button>
-      </div>
-    </div>
-  </form>
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">NOME</th>
-        <th scope="col">SIGLA</th>
-        <th scope="col">EXCLUIR</th>
-        <th scope="col">ALTERAR</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let estado of estados$ | async; let i = index">
-        <td>{{estado.nome}}</td>
-        <td>{{estado.sigla}}</td>
-        <td>
-          <button class="btn btn-info" type="button" name="button" (click)="excluir(i)">
-            <i class="fas fa-trash-alt"></i>
-          </button>
-        </td>
-        <td>
-          <button class="btn btn-info" type="button" name="button" (click)="alterar(i)" >
-            <i class="fas fa-edit"></i>
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="row mt-5">
+    <div class="col-md-4">
+      <form>
+        <div class="row">
+          <div class="form-group">
+            <input class="form-control" type="text" [(ngModel)]="estado.nome" name="nome" >
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group">
+            <input class="form-control" type="text" [(ngModel)]="estado.sigla" name="sigla" >
+          </div>
+        </div>
+
+        <div class="row">
+          <button class="btn btn-info" type="button" name="button" (click)='adicionar()'>adicionar</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="col-md-8">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">NOME</th>
+            <th scope="col">SIGLA</th>
+            <th scope="col">EXCLUIR</th>
+            <th scope="col">ALTERAR</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let estado of estados$ | async; let i = index">
+            <td>{{estado.nome}}</td>
+            <td>{{estado.sigla}}</td>
+            <td>
+              <button class="btn btn-info" type="button" name="button" (click)="excluir(estado.id)">
+                <i class="fas fa-trash-alt"></i>
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-info" type="button" name="button" (click)="alterar(estado)" >
+                <i class="fas fa-edit"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
 </div>

@@ -7,21 +7,21 @@ import { take } from 'rxjs/operators';
 export class ServicoEstado{
 
   private readonly URL = "http://localhost:8080/ws/estado/";
-  
+
   estado: Estado = new Estado();
 
-  constructor(private http: HttpClient){
+  constructor(private http: HttpClient){}
 
+  adicionar(estado: Estado) {
+    return this.http.post(this.URL, estado).pipe(take(1));
   }
 
-  adicionar() : void {
-    this.estado = new Estado();
+  excluir(id: number) {
+    return this.http.delete(this.URL+id).pipe(take(1));
   }
 
-  excluir(i:number) : void {
-  }
-
-  alterar(i:number) : void{
+  alterar(estado: Estado) {
+    return this.http.put(this.URL, estado).pipe(take(1));
   }
 
   buscar(){
